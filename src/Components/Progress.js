@@ -59,7 +59,7 @@ const Progress = ({ patient, routineId }) => {
           variant='h5'
           sx={{ color: theme.palette.secondary.main, fontWeight: '700' }}
         >
-          {report.feedbacksDone} sesiones!
+          28 sesiones!
         </Typography>
       </Typography>
     );
@@ -95,33 +95,34 @@ const Progress = ({ patient, routineId }) => {
           />
         </Grid>
       )}
-
-      <Grid item xs={12} marginTop='30px' marginBottom='30px'>
-        <Typography
-          color={theme.palette.primary.main}
-          fontWeight='700'
-          marginBottom='10px'
-        >
-          Logros
-        </Typography>
-        {patientAchievements === null ? (
-          <Grid
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+      {currentUser.role == 'paciente' && (
+        <Grid item xs={12} marginTop='30px' marginBottom='30px'>
+          <Typography
+            color={theme.palette.primary.main}
+            fontWeight='700'
+            marginBottom='10px'
           >
-            <CircularProgress />
-          </Grid>
-        ) : (
-          <Achievements
-            achievements={patientAchievements}
-            routineAchievements={routineAchievements}
-            report={report}
-          />
-        )}
-      </Grid>
+            Logros
+          </Typography>
+          {patientAchievements === null ? (
+            <Grid
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CircularProgress />
+            </Grid>
+          ) : (
+            <Achievements
+              achievements={patientAchievements}
+              routineAchievements={routineAchievements}
+              report={report}
+            />
+          )}
+        </Grid>
+      )}
     </Grid>
   );
 };
